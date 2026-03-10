@@ -1,4 +1,4 @@
-# novel-writer Skill | AI 小说创作引擎 v3.0
+# ai-novel-skill| AI 小说创作引擎 v3.0
 
 这是一个能实现**长篇小说从创意到完稿全流程自动化**的 Skill 项目。作者只需用自然语言告诉 AI 你想写什么故事，它就能帮你完成从**创意构思、世界观搭建、人物设定、章节大纲、逐章写作到最终合稿**的整套流程。
 
@@ -42,22 +42,22 @@
 
 **🤖 Antigravity / Gemini Code Assist:**
 ```bash
-git clone https://github.com/your-repo/ai-novel-skill.git .agent/skills/ai-novel-skill
+git clone https://github.com/AI-Practical-Lab/ai-novel-skill.git .agent/skills/ai-novel-skill
 ```
 
 **🚀 Trae IDE:**
 ```bash
-ai-novel-skillgit clone https://github.com/your-repo/ai-novel-skill.git .trae/skills/novel-writer
+ai-novel-skillgit clone https://github.com/AI-Practical-Lab/ai-novel-skill.git .trae/skills/novel-writer
 ```
 
 **🧠 Claude Code:**
 ```bash
-git clone https://github.com/your-repo/ai-novel-skill.git .claude/skills/ai-novel-skill
+git clone https://github.com/AI-Practical-Lab/ai-novel-skill.git .claude/skills/ai-novel-skill
 ```
 
 **💻 Cursor / VSCode / 通用:**
 ```bash
-git clone https://github.com/your-repo/ai-novel-skill.git skills/novel-writer
+git clone https://github.com/AI-Practical-Lab/ai-novel-skill.git skills/ai-novel-skill
 ```
 
 ### 2. 试试这样跟 AI 说
