@@ -1,4 +1,4 @@
-# ai-novel-skill| AI 小说创作引擎 v3.0
+# novel-writer| AI 小说创作引擎 v3.0
 
 这是一个能实现**长篇小说从创意到完稿全流程自动化**的 Skill 项目。作者只需用自然语言告诉 AI 你想写什么故事，它就能帮你完成从**创意构思、世界观搭建、人物设定、章节大纲、逐章写作到最终合稿**的整套流程。
 
@@ -6,7 +6,7 @@
 
 ![ai_novel](assets/ai_novel.png)
 
----
+***
 
 ## 能做什么
 
@@ -24,7 +24,7 @@
 | **检查点机制** | 关键节点自动创建快照，支持随时回滚恢复               |
 | **最终合稿**  | 合并所有章节生成 final.md 和 final.docx    |
 
----
+***
 
 ## 做不到什么
 
@@ -34,53 +34,63 @@
 - **不支持多语言写作** -- 目前主要针对中文长篇小说优化
 - **不能实时联网查资料** -- 世界观设定依赖 AI 已有知识，特定领域需用户提供资料
 
----
+***
 
 ## 🚀 快速开始 (Quick Start)
 
 ### 1. 安装 Skill (Install)
 
 **🤖 Antigravity / Gemini Code Assist:**
+
 ```bash
-git clone https://github.com/AI-Practical-Lab/ai-novel-skill.git .agent/skills/ai-novel-skill
+git clone https://github.com/AI-Practical-Lab/novel-writer.git .agent/skills/novel-writer
 ```
 
 **🚀 Trae IDE:**
+
 ```bash
-ai-novel-skillgit clone https://github.com/AI-Practical-Lab/ai-novel-skill.git .trae/skills/ai-novel-skill
+novel-writergit clone https://github.com/AI-Practical-Lab/novel-writer.git .trae/skills/novel-writer
 ```
 
 **🧠 Claude Code:**
+
 ```bash
-git clone https://github.com/AI-Practical-Lab/ai-novel-skill.git .claude/skills/ai-novel-skill
+git clone https://github.com/AI-Practical-Lab/novel-writer.git .claude/skills/novel-writer
 ```
 
 **💻 Cursor / VSCode / 通用:**
+
 ```bash
-git clone https://github.com/AI-Practical-Lab/ai-novel-skill.git skills/ai-novel-skill
+git clone https://github.com/AI-Practical-Lab/novel-writer.git skills/novel-writer
 ```
 
 ### 2. 试试这样跟 AI 说
 
 **开始一本新小说**
+
 > "我想写一本小说"
 
 **指定类型创作**
+
 > "帮我写一本古代言情长篇小说，要感人一点的"
 
 **继续之前的创作**
+
 > "继续写《他养大了皇帝》"
 
 **查看当前进度**
+
 > "小说写到哪了？"
 
 **回滚到检查点**
+
 > "回滚到第3章完成时的状态"
 
 **修改已写章节**
+
 > "第5章节奏太慢，帮我重写"
 
----
+***
 
 ## 📦 环境准备
 
@@ -92,6 +102,7 @@ git clone https://github.com/AI-Practical-Lab/ai-novel-skill.git skills/ai-novel
 - 示例：《他养大了皇帝》→ `~/Documents/他养大了皇帝/`
 
 **目录结构**：
+
 ```
 ~/Documents/{书名}/
 ├── config/
@@ -115,7 +126,7 @@ git clone https://github.com/AI-Practical-Lab/ai-novel-skill.git skills/ai-novel
 └── status.md                  # 当前状态（唯一真相源）
 ```
 
----
+***
 
 ## 📂 文件夹说明
 
@@ -136,12 +147,14 @@ git clone https://github.com/AI-Practical-Lab/ai-novel-skill.git skills/ai-novel
   - `novel-chapter-update/`: 章节更新
   - `novel-check-quality/`: 质量检查
 
----
+***
 
 ## ⚠️ 核心机制说明
 
 ### 强制验证机制
+
 每一步完成后必须运行验证脚本，失败则阻断流程：
+
 ```bash
 # 验证 Step 2（项目初始化）
 python scripts/validate_step.py --step 2 --book-name "书名"
@@ -154,7 +167,9 @@ python scripts/validate_step.py --step 6 --chapter 1_01 --book-name "书名"
 ```
 
 ### 检查点机制
+
 关键节点自动创建快照，支持随时回滚：
+
 ```bash
 # 创建检查点
 python scripts/checkpoint.py create --book-name "书名" --name "step_3_complete"
@@ -164,6 +179,7 @@ python scripts/checkpoint.py rollback --book-name "书名" --name "step_3_comple
 ```
 
 ### 状态机流程
+
 ```
 Step 0: init → Step 1: brainstorm → Step 2: project_init 
 → Step 3: world_building → Step 4: volume_outline 
@@ -172,45 +188,41 @@ Step 0: init → Step 1: brainstorm → Step 2: project_init
 ```
 
 ### 章节情节推进四大原则
+
 1. **因果链原则**：每章危机必须从上一章隐患发展而来
 2. **抉择+代价原则**：主角每章必须做出明确抉择，每个抉择都有代价
 3. **升级递进原则**：危机必须层层升级，禁止同一级别危机重复出现
 4. **节奏权重原则**：过渡/铺垫/高潮/结尾阶段用章节数量体现节奏
 
----
+***
 
 ## ⚠️ 常见问题 (FAQ)
 
 1. **如何查看当前写作进度？**
    查看 `~/Documents/{书名}/status.md` 文件，这是唯一真相源。
-
 2. **如何修改已写的章节？**
    告诉 AI "帮我修改第X章"，AI 会根据你的反馈重写并记录到 `lessons_learned.md`。
-
 3. **验证失败怎么办？**
    验证脚本会输出具体错误，根据提示修复后重新运行验证。
-
 4. **可以跳过某个步骤吗？**
    不可以。强制验证机制确保每一步都完成才能进入下一步。
-
 5. **如何恢复之前的创作？**
    告诉 AI "继续写《书名》"，AI 会自动读取 status.md 从断点继续。
-
 6. **写了一半想回滚怎么办？**
    告诉 AI "回滚到XXX检查点"，AI 会恢复到该检查点状态。
 
----
+***
 
 ## 🔄 如何更新 (Update)
 
 当有新功能发布时，您可以输入以下命令一键更新：
 
 ```bash
-cd .trae/skills/ai-novel-skill
+cd .trae/skills/novel-writer
 git pull
 ```
 
----
+***
 
 ## 🌟 核心特性 (V3.0)
 
@@ -222,9 +234,9 @@ git pull
 - **上下文感知**：写作时自动读取前文、角色卡、伏笔等信息
 - **质量约束**：字数控制（2500-3500字/章）、画面感、代入感、冲突张力等八大写作原则
 
----
+***
 
 ## 打赏支持
 
 如果这个项目对你有帮助，欢迎打赏支持。你的支持会直接转化为继续开发和维护的动力。
-![good](assets/good.jpg)
+!\[good]\(assets/good.jpg null)
