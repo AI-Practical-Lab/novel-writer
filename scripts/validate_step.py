@@ -230,16 +230,20 @@ def validate_step_6(args):
         return False
     
     content = chapter_file.read_text(encoding='utf-8')
-    word_count = len(content)
+    byte_count = len(content.encode('utf-8'))
     
-    # 字数检查 (2500-3500字约等于 6000-10000 bytes)
-    if word_count < 1500:
-        print(f"❌ 字数不足：{word_count} bytes (约 {word_count//3} 字)")
+    # 计算中文字数（更准确的估算）
+    import re
+    chinese_chars = len(re.findall(r'[\u4e00-\u9fa5]', content))
+    
+    # 字数检查：要求3000-4000中文字
+    if chinese_chars < 3000:
+        print(f"❌ 字数不足：{chinese_chars} 字 (要求 3000-4000 字)")
         return False
-    elif word_count > 15000:
-        print(f"⚠ 字数偏多：{word_count} bytes (约 {word_count//3} 字)")
+    elif chinese_chars > 4000:
+        print(f"⚠ 字数偏多：{chinese_chars} 字 (建议 3000-4000 字)")
     else:
-        print(f"✓ 字数正常：{word_count} bytes (约 {word_count//3} 字)")
+        print(f"✓ 字数正常：{chinese_chars} 字")
     
     # 检查是否有开场钩子
     first_lines = '\n'.join(content.split('\n')[:10])
