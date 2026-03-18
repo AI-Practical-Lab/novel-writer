@@ -239,4 +239,4 @@ git pull
 ## 打赏支持
 
 如果这个项目对你有帮助，欢迎打赏支持。你的支持会直接转化为继续开发和维护的动力。
-!\[good]\(assets/good.jpg null)
+![good](assets/good.jpg)
